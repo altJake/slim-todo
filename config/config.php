@@ -2,6 +2,6 @@
 return array(
     'db' => array(
         'driver'   => 'pdo_sqlite',
-        'meomry'   => True
+        'path'   => __DIR__ . '/../data/todos.sqlite'
     )
 );
