@@ -1,0 +1,19 @@
+{
+    "name": "tripsByTips/todo-challege",
+    "require": {
+        "slim/slim": "~3.0",
+        "doctrine/orm": "~2.5",
+        "guzzlehttp/psr7": "^1.4"
+    },
+    "authors": [
+        {
+            "name": "Jakob Shimony",
+            "email": "jakob.shimony@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "App\\": "src/"
+        }
+    }
+}
