@@ -19,4 +19,6 @@ $app->get('/', function ($request, $response, $args = []) {
   return  $response->withStatus(200, 'OK')->withBody($body);
 });
 
+require_once ROOT_DIR . '/src/api/api.php';
+
 $app->run();
