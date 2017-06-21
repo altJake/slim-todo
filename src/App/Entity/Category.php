@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping;
 
 /**
  * @Entity
- * @Table(name="category")
+ * @Table(name="categories")
  */
 class Category extends Entity
 {
@@ -34,6 +34,7 @@ class Category extends Entity
   */
   public function setName($name)
   {
-    $this->name = $name;
+    if (!empty($name))
+      $this->name = $name;
   }
 }

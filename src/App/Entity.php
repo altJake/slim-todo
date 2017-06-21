@@ -83,12 +83,11 @@ abstract class Entity implements JsonSerializable
     $entity = [];
     $methods = get_class_methods(get_class($this));
     foreach ($methods as $method) {
-      if (preg_match('/get([A-Z][a-z]+)/', $method, $match)) {
-        $prop = strtolower($match[1]);
+      if (preg_match('/get(([A-Z][a-z]*)+)/', $method, $match)) {
+        $prop = lcfirst($match[1]);
         if (isset($this->{$prop})) {
           $entity[$prop] = $this->{$method}();
         }
-
       }
     }
     return $entity;

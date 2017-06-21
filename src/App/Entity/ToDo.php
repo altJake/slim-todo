@@ -2,10 +2,11 @@
 namespace App\Entity;
 use App\Entity;
 use Doctrine\ORM\Mapping;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity
- * @Table(name="todo")
+ * @Table(name="todos")
  */
 class Todo extends Entity
 {
@@ -16,13 +17,17 @@ class Todo extends Entity
   protected $subject;
 
   /**
-  * @Column(type="boolean")
+  * @Column(type="boolean", name="is_done")
   * @var boolean
   */
   protected $isDone;
 
   /**
-  * @OneToMany(targetEntity="Category", mappedBy="todo")
+  * @ManyToMany(targetEntity="Category")
+  * @JoinTable(name="todos_categories",
+  *   joinColumns={@JoinColumn(name="todo_id", referencedColumnName="id")},
+  *   inverseJoinColumns={@JoinColumn(name="category_id", referencedColumnName="id")}
+  * )
   */
   public $categories;
 
@@ -30,6 +35,7 @@ class Todo extends Entity
   {
     parent::__construct();
     $this->categories = new ArrayCollection();
+    $this->setIsDone(false);
   }
 
   /**
@@ -45,11 +51,12 @@ class Todo extends Entity
   */
   public function setSubject($subject)
   {
-    $this->subject = $subject;
+    if(!empty($subject))
+      $this->subject = $subject;
   }
 
   /**
-  * @return string
+  * @return boolean
   */
   public function getIsDone()
   {
@@ -57,10 +64,22 @@ class Todo extends Entity
   }
 
   /**
-  * @param string $isDone
+  * @param boolean $isDone
   */
   public function setIsDone($isDone)
   {
-    $this->isDone = $isDone;
+    if($isDone != null)
+      $this->isDone = $isDone;
+  }
+
+  public function jsonSerialize()
+  {
+    $entity = parent::jsonSerialize();
+
+    $entity['categories'] =
+      array_map(function($category) { return $category->jsonSerialize(); },
+                $this->categories->getValues());
+
+    return $entity;
   }
 }
