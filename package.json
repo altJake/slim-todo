@@ -7,7 +7,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "postinstall": "mkdir -p public/components && cp node_modules/react/dist/react.min.js public/components/react.min.js"
+    "postinstall": "mkdir -p public/components",
+    "postinstall": "cp node_modules/react/dist/react.min.js public/components/react.min.js",
+    "postinstall": "cp node_modules/jquery/dist/jquery.min.js public/components/jquery.min.js"
   },
   "repository": {
     "type": "git",
