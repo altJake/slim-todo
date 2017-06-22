@@ -1,7 +1,10 @@
 composer.lock
 composer.phar
 vendor/
+
 data/
+
 node_modules/
 npm-debug.log
-public/components/
+
+public/assets/
