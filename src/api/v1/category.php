@@ -5,9 +5,7 @@ use App\Entity\Category;
 /** @var \Slim\App $app
 *   @var \Doctrine\ORM\EntityManager $entityManager
 */
-$app->group('/category', function() use ($app, $entityManager) {
-  $categoryClass = 'App\Entity\Category';
-
+$app->group('/category', function() use ($app, $entityManager, $categoryClass) {
   $app->get('[/[{id}]]', function($request, $response, $args = []) use ($entityManager, $categoryClass) {
     $id = $args['id'];
 
@@ -42,13 +40,12 @@ $app->group('/category', function() use ($app, $entityManager) {
     if ($reqBody == null || empty($reqBody['id']) || empty($reqBody['name']))
       return $response->withStatus(400)->withJson(array('error' => 'Request body is empty or does not contain name and id fields'));
 
-    $category = $entityManager->find($categoryClass, $reqBody['id']);
+    $category = $entityManager->getReference($categoryClass, $reqBody['id']);
 
     if (empty($category))
       return $response->withStatus(404)->withJson(array('error' => 'Category with the given id could not be found'));
 
     $category->setName($reqBody['name']);
-    $entityManager->persist($category);
     $entityManager->flush();
 
     return $response->withstatus(200)->withJson($category);

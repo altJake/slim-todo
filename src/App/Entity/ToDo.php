@@ -68,7 +68,6 @@ class Todo extends Entity
   */
   public function setIsDone($isDone)
   {
-    if($isDone != null)
       $this->isDone = $isDone;
   }
 
