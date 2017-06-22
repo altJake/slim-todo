@@ -1,0 +1,27 @@
+{
+  "name": "slim-todo",
+  "version": "0.0.1",
+  "description": "Simple To-Do SPA using PHP Slim, Doctrine and React",
+  "dependencies": {
+    "react": "^15.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "mkdir -p public/components && cp node_modules/react/dist/react.min.js public/components/react.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobyshi/slim-todo.git"
+  },
+  "keywords": [
+    "todo",
+    "react",
+    "slim"
+  ],
+  "author": "Jakob Shimony <jakob.shimony@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kobyshi/slim-todo/issues"
+  },
+  "homepage": "https://github.com/kobyshi/slim-todo#readme"
+}

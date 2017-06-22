@@ -15,7 +15,7 @@ $app = new App(['settings' =>
 ]);
 
 $app->get('/', function ($request, $response, $args = []) {
-  $body = new Stream(ROOT_DIR . '/views/index.html', 'r');
+  $body = new Stream(__DIR__ . '/index.html', 'r');
   return  $response->withStatus(200, 'OK')->withBody($body);
 });
 
