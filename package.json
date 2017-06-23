@@ -14,7 +14,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "./node_modules/.bin/webpack -d"
+    "build": "./node_modules/.bin/webpack -d",
+    "dev": "./node_modules/.bin/webpack -d --watch"
   },
   "repository": {
     "type": "git",
