@@ -1,4 +1,4 @@
-var $ = require('jquery');
+import $ from 'jquery';
 
 export class CategoryModel {
 	constructor() {

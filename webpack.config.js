@@ -16,14 +16,16 @@ var config = {
         test: /\.jsx?/,
         include: APP_DIR,
         use: {
-          loader: 'babel-loader',
-          // options: {
-          //   presets: ['env']
-          // }
+          loader: 'babel-loader'
         }
       }
     ]
-  }
+  },
+  plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery"
+        })
+    ]
 };
 
 module.exports = config;
