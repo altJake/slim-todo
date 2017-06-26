@@ -59,7 +59,7 @@ $app->group('/todo', function() use ($app, $entityManager, $todoClass, $category
       return $response->withStatus(404)->withJson(array('error' => 'Todo with the given id could not be found'));
 
     $todo->setSubject($reqBody['subject']);
-    $todo->setIsDone(strtolower($reqBody['isDone']) === 'true');
+    $todo->setIsDone(array_key_exists('isDone', $reqBody) && (strtolower($reqBody['isDone']) === 'true' || $reqBody['isDone'] === true));
 
     if (!array_key_exists('categories', $reqBody)) {
       $todo->categories = new ArrayCollection();
